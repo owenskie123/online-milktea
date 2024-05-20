@@ -76,7 +76,10 @@ h3{
 .float-text{
     position: absolute;
     bottom: 50px;
-    left: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
 }
 fieldset{
     border: 1px solid white;

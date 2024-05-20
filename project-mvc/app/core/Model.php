@@ -108,4 +108,19 @@
             }
             return 0;
         }
+
+        public function isExists($data, $column, $data_not = [], $column_not = ''){
+            if (isset($data[$column])){
+                $arr[$column] = $data[$column];
+                $arr_not = [];
+                if (!empty($data_not) && !empty($column_not)){
+                    $arr_not[$column_not] = $data_not[$column_not];
+                }
+                $result = $this->where($arr, $arr_not);
+                if (is_array($result) && count($result) > 0){
+                    return true;
+                }
+            }
+            return false;
+        }
     }

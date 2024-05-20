@@ -1,5 +1,3 @@
-
-
 *{
     margin: 0;
     padding: 0;
@@ -110,4 +108,12 @@ table tr td{
 .footer{
     background-color: crimson;
     color: white;
+}
+
+main{
+    background-color: antiquewhite;
+}
+
+.image-display{
+    width: 100%;
 }

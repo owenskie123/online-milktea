@@ -2,7 +2,7 @@
     class Login extends Controller{
         public function index(){
             if (Auth::isLoggedIn()){
-                redirect('admin');
+                redirect('admins');
             }
             
             $this->view('login', [

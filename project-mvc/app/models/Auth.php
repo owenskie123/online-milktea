@@ -9,6 +9,16 @@
         }
 
         public static function isLoggedIn(){
-            return isset($_SESSION['user']) ? true : false;
+            if (isset($_SESSION['user'])){
+                $admin = new Admin();
+                $user['username'] = $_SESSION['user']->username;
+                $auth = $admin->first($user);
+                if ($auth){
+                    if ($_SESSION['user']->password == $auth->password){
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }

@@ -14,25 +14,37 @@
             <br>
 
 
-            <a href="#"  class="btn_primary">Add Admin</a>
+            <a href="<?= ROOT ?>/admins/add_account"  class="btn_primary">Add Admin</a>
             <br /><br />
 
             <table class="tbl-full">
                 <tr>
-                    <th>S.N.</th>
-                    <th>Full Name</th>
+                    <th>Admin ID</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
                     <th>Username</th>
                     <th>Actions</th>
                 </tr>
-                <tr>
-                    <td>1.</td>
-                    <td>OWEN BRAINE GAMOL  </td>
-                    <td>OWEN</td>
-                    <td>
-                        <a href="#" class="btn_secondary">Update Admin</a>
-                        <a href="#" class="btn_danger">Delete Admin</a>
-                    </td>
-                </tr>
+                <?php if (is_array($admins) && count($admins) > 0): ?>
+                    <?php foreach($admins as $acc): ?>
+                        <tr>
+                            <td><?= $acc->admin_id ?></td>
+                            <td><?= $acc->first_name ?></td>
+                            <td><?= $acc->middle_name ?></td>
+                            <td><?= $acc->last_name ?></td>
+                            <td><?= $acc->username ?></td>
+                            <td>
+                                <a href="<?= ROOT ?>/admins/edit_account/<?= $acc->admin_id ?>" class="btn_secondary">Edit</a>
+                                <a href="<?= ROOT ?>/admins/delete_account/<?= $acc->admin_id ?>" class="btn_danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="7">No Result</td>
+                    </tr>
+                <?php endif; ?>
             </table>
         </div>
     </div>
