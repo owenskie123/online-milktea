@@ -1,0 +1,32 @@
+.login-container{
+    background-color: antiquewhite;
+    height: calc(100vh - 76px - 70px - 34px);
+    display: grid;
+    place-items: center;
+}
+
+.login-form{
+    background-color: white;
+    padding: 20px;
+}
+
+.login-input{
+    display: grid;
+    grid-template-columns: 90px auto;
+    gap: 10px;
+    margin-block: 10px;
+}
+
+.txtbox{
+    
+}
+
+.button{
+    width: 100%;
+    font-size: 16px;
+    background-color: #ff6b81;
+    color: white;
+    border: none;
+    height: 30px;
+    cursor: pointer;
+}

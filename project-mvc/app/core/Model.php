@@ -1,5 +1,7 @@
 <?php
     class Model extends Database{
+        public $errors = [];
+
         public function __construct(){
             if (!property_exists($this, 'table')){
                 $this->table = strtolower($this::class) . 's';
@@ -68,5 +70,42 @@
             $this->query($query, $data);
 
             return false;
+        }
+
+        public function first($data, $data_not = []){
+            $result = $this->where($data, $data_not);
+            
+            if ($result){
+                return $result[0];
+            }
+            return false;
+        }
+
+        public function like($data, $string){
+            $columns = $data;
+            $query = "SELECT * FROM $this->table WHERE CONCAT(";
+
+            foreach ($columns as $column){
+                $query .= $column . ", ";
+            }
+
+            $query = trim($query, ", ");
+            $query .= ") LIKE '%" . $string . "%'";
+            $result = $this->query($query);
+
+            if ($result){
+                return $result;
+            }
+            return false;
+        }
+
+        public function count($column = 'id'){
+            $query = "SELECT COUNT(`$column`) AS `count` FROM $this->table";
+            
+            $result = $this->query($query);
+            if ($result){
+                return $result[0]->count;
+            }
+            return 0;
         }
     }
