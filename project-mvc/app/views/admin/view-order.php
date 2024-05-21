@@ -8,12 +8,13 @@
 
     
     <link rel="stylesheet" href="<?= ROOT ?>/css/style.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/css/admin.css">
 </head>
 
 <body>
     <div class="img_area"></div>
     
-    <?php include PATH . 'nav.php'; ?>
+    <?php include PATH . 'admin-nav.php'; ?>
 
 
     <section class="food-search">
