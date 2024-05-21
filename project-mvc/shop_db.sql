@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2024 at 01:51 AM
+-- Generation Time: May 21, 2024 at 12:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -42,7 +42,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `first_name`, `middle_name`, `last_name`, `username`, `email`, `password`) VALUES
-(5, 'Mark', '', 'Ingal', 'MarkIngal', 'leonardpaulo.sanchez.3@gmail.com', '$2y$10$THf6sGdzBAFVkO.vZZDWqeLodSOTImT5642L24oqO.YSI9TIfXZ7u');
+(5, 'Mark', '', 'Ingal', 'MarkIngal', 'markingal@gmail.com', '$2y$10$THf6sGdzBAFVkO.vZZDWqeLodSOTImT5642L24oqO.YSI9TIfXZ7u');
 
 -- --------------------------------------------------------
 
@@ -81,15 +81,16 @@ CREATE TABLE `orders` (
   `address` text NOT NULL,
   `qty` int(11) NOT NULL,
   `cost` float NOT NULL,
-  `status` varchar(15) NOT NULL
+  `status` varchar(20) NOT NULL,
+  `is_paid` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `product_id`, `product_name`, `fullname`, `contact`, `email`, `address`, `qty`, `cost`, `status`) VALUES
-(2, 2, 'Lemon Fruit Juice', 'Leonard', '09123456789', 'leonardpaulo.sanchez.3@gmail.com', 'Some Address', 1, 85, 'new');
+INSERT INTO `orders` (`order_id`, `product_id`, `product_name`, `fullname`, `contact`, `email`, `address`, `qty`, `cost`, `status`, `is_paid`) VALUES
+(3, 2, 'Lemon Fruit Juice', 'Ren Dela Cruz', '09123456789', 'rendelacruz@gmail.com', 'Some Address', 3, 255, 'delivered', 1);
 
 -- --------------------------------------------------------
 
@@ -163,7 +164,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`

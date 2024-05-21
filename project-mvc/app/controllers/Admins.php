@@ -434,11 +434,80 @@
             $this->isLoggedIn();
 
             $order = new Order();
-            $orders = $order->findAll();
+            $orders = $order->visible_orders();
 
             $this->view('admin/orders', [
                 'orders' => $orders
             ]);
+        }
+
+        public function view_order($id){
+            $this->isLoggedIn();
+
+            $order = new Order();
+            $orderId['order_id'] = $id;
+            $selectedOrder = $order->first($orderId);
+            $productId['product_id'] = $selectedOrder->product_id;
+
+            $product = new Product();
+            $selectedProduct = $product->first($productId);
+
+            $this->view('admin/view-order', [
+                'order' => $selectedOrder,
+                'product' => $selectedProduct
+            ]);
+        }
+
+        public function prepare_order($id){
+            $this->modify_order_status($id, 'preparing');
+        }
+
+        public function ready_for_pickup($id){
+            $this->modify_order_status($id, 'ready for pickup');
+        }
+
+        public function delivering($id){
+            $this->modify_order_status($id, 'delivering');
+        }
+
+        public function delivered($id){
+            $this->modify_order_status($id, 'delivered');
+        }
+
+        private function modify_order_status($id, $status){
+            $this->isLoggedIn();
+
+            $order = new Order();
+            $data['order_id'] = $id;
+            $data['status'] = $status;
+            $order->update($data['order_id'], $data, 'order_id');
+            redirect('admins/orders');
+        }
+
+        public function order_paid($id){
+            $this->modify_paid_status($id, true);
+        }
+
+        public function order_unpaid($id){
+            $this->modify_paid_status($id, false);
+        }
+
+        private function modify_paid_status($id, $bool){
+            $this->isLoggedIn();
+
+            $order = new Order();
+            $data['order_id'] = $id;
+            $data['is_paid'] = intval($bool);
+            $order->update($data['order_id'], $data, 'order_id');
+            redirect('admins/orders');
+        }
+
+        public function delete_order($id){
+            $this->isLoggedIn();
+
+            $order = new Order();
+            $order->delete($id, 'order_id');
+            redirect('admins/orders');
         }
 
         public function logout(){
